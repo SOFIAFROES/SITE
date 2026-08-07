@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — The Listening Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand: #f3ece1;
+    --sand-deep: #e8ddcb;
+    --paper: #faf6ef;
+    --ink: #2b241d;
+    --ink-soft: #6b6055;
+    --terracotta: #b5563a;
+    --terracotta-deep: #8f4029;
+    --line: rgba(43,36,29,0.12);
+    --shadow: 0 20px 50px -25px rgba(43,36,29,0.35);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--sand);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(181,86,58,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(181,86,58,0.05), transparent 55%);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* subtle grain */
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    pointer-events:none;
+    opacity:0.035;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  header{
+    padding: 5rem 1.5rem 3.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow{
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+    display:block;
+    margin-bottom: 1.1rem;
+  }
+
+  h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+
+  header p{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+
+  main{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  #status{
+    text-align:center;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    padding: 3rem 0;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 2.1rem 1.9rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease, border-color 0.45s ease;
+    opacity: 0;
+    animation: rise 0.7s ease forwards;
+  }
+
+  .grid .card:nth-child(1){ animation-delay: 0.05s; }
+  .grid .card:nth-child(2){ animation-delay: 0.15s; }
+  .grid .card:nth-child(3){ animation-delay: 0.25s; }
+  .grid .card:nth-child(4){ animation-delay: 0.35s; }
+  .grid .card:nth-child(5){ animation-delay: 0.45s; }
+  .grid .card:nth-child(6){ animation-delay: 0.55s; }
+  .grid .card:nth-child(n+7){ animation-delay: 0.6s; }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(18px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width: 3px; height: 100%;
+    background: var(--terracotta);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover{
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+    border-color: transparent;
+  }
+
+  .card:hover::before{ transform: scaleY(1); }
+
+  .card-date{
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+
+  .card h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.65rem;
+    margin: 0.7rem 0 0.85rem;
+    color: var(--ink);
+  }
+
+  .card p{
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .card-more{
+    display:inline-block;
+    margin-top: 1.3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .card-more::after{
+    content: " →";
+    transition: margin-left 0.3s ease;
+  }
+
+  .card:hover .card-more::after{
+    margin-left: 6px;
+  }
+
+  /* Overlay / full post */
+  .overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(43,36,29,0.55);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4vh 1.2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 50;
+    overflow-y: auto;
+  }
+
+  .overlay.open{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .post-panel{
+    background: var(--paper);
+    max-width: 680px;
+    width: 100%;
+    padding: 3.2rem 3rem 3.6rem;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.45s ease;
+  }
+
+  .overlay.open .post-panel{
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .close-btn{
+    position: absolute;
+    top: 1.4rem;
+    right: 1.6rem;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .close-btn:hover{ color: var(--terracotta); transform: rotate(90deg); }
+
+  .post-panel .card-date{ display:block; }
+
+  .post-panel h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 500;
+    margin: 0.9rem 0 1.6rem;
+    line-height: 1.15;
+  }
+
+  .post-body{
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+
+  .post-body p{ margin-bottom: 1.1rem; }
+
+  footer{
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    color: var(--ink-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 640px){
+    .post-panel{ padding: 2.4rem 1.6rem 2.8rem; }
+    header{ padding: 3.5rem 1.2rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">The Listening Room</span>
+  <h1>Blog</h1>
+  <p>Não há nada para transformar. Há algo para revelar.</p>
+</header>
+
+<main>
+  <div id="status">a carregar os textos…</div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>escrito devagar, lido com tempo.</footer>
+
+<div class="overlay" id="overlay">
+  <div class="post-panel" id="postPanel">
+    <button class="close-btn" id="closeBtn" aria-label="fechar">×</button>
+    <span class="card-date" id="postDate"></span>
+    <h2 id="postTitle"></h2>
+    <div class="post-body" id="postBody"></div>
+  </div>
+</div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const status = document.getElementById('status');
+  const overlay = document.getElementById('overlay');
+  const postPanel = document.getElementById('postPanel');
+  const closeBtn = document.getElementById('closeBtn');
+  const postDate = document.getElementById('postDate');
+  const postTitle = document.getElementById('postTitle');
+  const postBody = document.getElementById('postBody');
+
+  function formatDate(dateStr){
+    try{
+      const d = new Date(dateStr);
+      if(isNaN(d)) return dateStr;
+      return d.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+    }catch(e){ return dateStr; }
+  }
+
+  function renderBody(content){
+    // Support either a single string or an array of paragraphs
+    const paragraphs = Array.isArray(content) ? content : String(content).split(/\n\s*\n/);
+    postBody.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+  }
+
+  function openPost(post){
+    postDate.textContent = formatDate(post.date);
+    postTitle.textContent = post.title;
+    renderBody(post.content || post.summary || '');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePost(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closePost);
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) closePost(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closePost(); });
+
+  fetch('posts.json')
+    .then(res => {
+      if(!res.ok) throw new Error('não foi possível ler posts.json');
+      return res.json();
+    })
+    .then(posts => {
+      if(!Array.isArray(posts) || posts.length === 0){
+        status.textContent = 'ainda não há textos publicados.';
+        return;
+      }
+
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      status.remove();
+      posts.forEach(post => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <span class="card-date">${formatDate(post.date)}</span>
+          <h2>${post.title}</h2>
+          <p>${post.summary || ''}</p>
+          <span class="card-more">ler</span>
+        `;
+        card.addEventListener('click', () => openPost(post));
+        grid.appendChild(card);
+      });
+    })
+    .catch(err => {
+      status.textContent = 'não foi possível carregar os textos agora.';
+      console.error(err);
+    });
+</script>
+
+</body>
+</html>
