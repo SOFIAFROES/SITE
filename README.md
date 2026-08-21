@@ -1,4 +1,4 @@
-# Sofia Fröes — Acting as Transformation
+# Sofia Froes — Acting as you are
 
 Site pessoal e página do laboratório.
 
