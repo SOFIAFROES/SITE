@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letters from Sofia — Sofia Froes</title>
+  <meta name="description" content="A note from Sofia's practice, every two weeks. Stories, observations and tools from acting, brought into everyday life." />
+  <meta property="og:title" content="Letters from Sofia — Sofia Froes" />
+  <meta property="og:description" content="A note from my practice, every two weeks." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.sofiafroes.com/foto_site.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:  #F0E9DF;
+      --sand2: #E5DDD2;
+      --sand3: #D8CFC4;
+      --ink:   #1C1A16;
+      --ink2:  #2E2B24;
+      --stone: #6A6258;
+      --ember: #7A2C12;
+      --ember2:#A83C1C;
+      --warm:  #C8A882;
+      --line:  rgba(14,13,11,0.09);
+      --serif: "Cormorant Garamond", serif;
+      --sans:  "DM Sans", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sand);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--ember2); color: var(--sand); }
+
+    .eyebrow {
+      font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--ember2); font-weight: 400; display: block;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      padding: 22px 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(240,233,223,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: .5px solid var(--line);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      letter-spacing: .04em; color: var(--ink); text-decoration: none;
+    }
+    .nav-back {
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--stone); text-decoration: none; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      padding: 170px 6vw 90px;
+      text-align: center;
+      max-width: 680px; margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 300; font-style: italic;
+      font-size: clamp(34px, 5.6vw, 58px); color: var(--ink2);
+      line-height: 1.15; margin: 22px 0 34px;
+    }
+    .hero-lines {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 16px; color: var(--stone); margin-bottom: 30px;
+    }
+    .one-line {
+      white-space: nowrap;
+      font-size: clamp(9px, 2.6vw, 16px);
+    }
+    @media (max-width: 420px) {
+      .one-line {
+        white-space: normal;
+        font-size: 14px;
+      }
+    }
+    .hero-rule { width: 40px; height: 1px; background: var(--ember2); margin: 34px auto; }
+    .hero-negation {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(17px, 2vw, 20px); color: var(--ink2);
+      line-height: 1.7; margin-bottom: 8px;
+    }
+    .hero-negation.final {
+      color: var(--ember2); margin-top: 14px;
+    }
+
+    /* WHAT EVERY LETTER BRINGS */
+    .brings {
+      background: var(--sand2);
+      padding: 100px 6vw;
+    }
+    .brings-inner { max-width: 720px; margin: 0 auto; }
+    .brings-label { text-align: center; margin-bottom: 46px; }
+    .brings-list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+    .brings-list li {
+      display: flex; gap: 20px; align-items: baseline;
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(16px, 1.9vw, 19px); color: var(--ink2);
+      line-height: 1.6;
+      text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+    }
+    .brings-list li::before {
+      content: "—"; color: var(--ember2); font-style: normal;
+      flex-shrink: 0;
+    }
+
+    /* SIGNUP */
+    .signup {
+      padding: 110px 6vw;
+      text-align: center;
+      max-width: 600px; margin: 0 auto;
+    }
+    .signup .eyebrow { margin-bottom: 20px; }
+    .signup h2 {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(24px, 3.2vw, 32px); color: var(--ink2);
+      line-height: 1.4; margin-bottom: 28px;
+    }
+    .signup p {
+      color: var(--stone); font-size: 15px; margin-bottom: 14px;
+      text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+    }
+    .signup p.invite {
+      font-family: var(--serif); font-style: italic; font-size: clamp(9px, 2.9vw, 17px);
+      color: var(--ink); margin-top: 20px; margin-bottom: 40px;
+      text-align: center; white-space: nowrap;
+    }
+    @media (max-width: 420px) {
+      .signup p.invite {
+        white-space: normal;
+        font-size: 15px;
+      }
+    }
+
+    .ml-form { max-width: 420px; margin: 0 auto; }
+    .ml-fields { display: flex; flex-direction: column; gap: 12px; }
+    .ml-input {
+      width: 100%; padding: 15px 18px; font-family: var(--sans); font-size: 14px;
+      border: 1px solid var(--line); background: var(--sand2); color: var(--ink);
+      border-radius: 2px; outline: none; transition: border-color .25s;
+    }
+    .ml-input:focus { border-color: var(--ember2); }
+    .btn-ember {
+      font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--sand); background: var(--ember2); border: none;
+      padding: 16px 30px; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: background .3s ease;
+      font-family: var(--sans);
+    }
+    .btn-ember:hover { background: var(--ember); }
+
+    .signup-legal {
+      margin-top: 22px; font-size: 12px; color: var(--stone);
+      opacity: .75;
+    }
+    .signup-legal a { color: var(--ember2); text-decoration: none; border-bottom: .5px solid var(--ember2); }
+    .signup-legal a:hover { opacity: .7; }
+
+    footer {
+      border-top: .5px solid var(--line);
+      padding: 40px 6vw;
+      text-align: center;
+    }
+    footer p { font-size: 12px; color: var(--stone); }
+    footer a { text-decoration: none; color: var(--stone); }
+    footer a:hover { color: var(--ember2); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 140px 6vw 70px; }
+      .brings-list li { flex-direction: column; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sofia Fr<span style="color:var(--ember2);">o</span>es</a>
+    <a href="index.html" class="nav-back">← Back to sofiafroes.com</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow reveal">Letters from Sofia</span>
+    <h1 class="reveal">A note from my practice,<br>every two weeks.</h1>
+    <div class="hero-lines reveal">
+      <p>Stories from my work and life.</p>
+      <p class="one-line">Observations about presence, expression and the ways we learn to be.</p>
+      <p>Tools from acting, brought into everyday life.</p>
+    </div>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- WHAT EVERY LETTER BRINGS -->
+  <section class="brings">
+    <div class="brings-inner">
+      <p class="eyebrow brings-label reveal">Every letter may bring</p>
+      <ul class="brings-list">
+        <li class="reveal">A story from Sofia's experience — in theatre, cinema, teaching or working with people.</li>
+        <li class="reveal">A practice or observation that can be taken into everyday life.</li>
+        <li class="reveal">A different way of looking at presence, expression, relationships or performance.</li>
+        <li class="reveal">Ideas that begin in acting and reach far beyond the stage.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup">
+    <span class="eyebrow reveal">A note from me to you, every two weeks</span>
+    <h2 class="reveal">I write about what I see, what I learn,<br>and what continues to surprise me about being human.</h2>
+    <p class="invite reveal">If something in these letters speaks to you, you're welcome to join me.</p>
+
+    <form class="ml-form reveal" action="https://assets.mailerlite.com/jsonp/2443992/forms/190276865226704007/subscribe" data-code="" method="post" target="_blank">
+      <div class="ml-fields">
+        <input aria-label="name" aria-required="true" type="text" name="fields[name]" placeholder="Your name" autocomplete="given-name" class="ml-input">
+        <input aria-label="email" aria-required="true" type="email" name="fields[email]" placeholder="Your email" autocomplete="email" class="ml-input" required>
+        <button type="submit" class="btn-ember">Yes, sign me up</button>
+      </div>
+    </form>
+
+    <p class="signup-legal reveal">
+      By subscribing, I agree to the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a>.
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2026 Sofia Fr<span style="color:var(--ember2);">o</span>es · <a href="index.html">sofiafroes.com</a></p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    document.querySelector('.ml-form').addEventListener('submit', function () {
+      setTimeout(() => {
+        this.innerHTML = '<p style="font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink2); padding: 20px 0;">Thank you. Your first letter is on its way.</p>';
+      }, 400);
+    });
+  </script>
+
+</body>
+</html>
